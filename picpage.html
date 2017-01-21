@@ -20,11 +20,19 @@
   </div>
   <div class="w3-half w3-red w3-container" style="height:94px">
     <div class="w3-padding-64 w3-center">
-      <div class="w3-left-align w3-padding-xxlarge">
-          <p style="color: black;"> {{.m.tag1 }} </p>  
-          <p style="color: black;"> {{.m.tag2 }} </p>  
-          <p style="color: black;"> {{.m.tag3 }} </p>  
+
+      <div class=" w3-padding-xxlarge">
+          <script type="text/javascript">
+for (i=0; i<=5; i++)
+{
+document.write("<div class='w3-panel w3-blue w3-round-xlarge'>")
+document.write("<p style='color: black;'> {{.m.tag1 }} </p>")
+document.write("</div>")
+
+}
+</script>
       </div>
+
     </div>
   </div>
 </div>
