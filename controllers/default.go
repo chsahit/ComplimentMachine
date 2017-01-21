@@ -44,23 +44,23 @@ func (slice Sentiments) Less(i, j int) bool {
 		slice[j].Probability.Pos*60+
 			slice[j].Probability.Neg*30+
 			slice[j].Probability.Neutral*10**/
-        var score1 int
-        var score2 int
+        var score1 float64
+        var score2 float64
         if slice[i].Probability.Pos > slice[i].Probability.Neutral &&
             slice[i].Probability.Pos > slice[i].Probability.Neg {
-                score1 := 100 + slice[i].Probability.Pos
+                score1 = 100 + slice[i].Probability.Pos
         } else if slice[i].Probability.Neutral > slice[i].Probability.Neg {
-            score1 := slice[i].Probability.Neutral
+            score1 = slice[i].Probability.Neutral
         } else {
-            score1 := slice[i].Probability.Neg - 100
+            score1 = slice[i].Probability.Neg - 100
         }
         if slice[j].Probability.Pos > slice[j].Probability.Neutral &&
             slice[j].Probability.Pos > slice[j].Probability.Neg {
-                score2 := 100 + slice[j].Probability.Pos
+                score2 = 100 + slice[j].Probability.Pos
         } else if slice[j].Probability.Neutral > slice[j].Probability.Neg {
-            score2 := slice[j].Probability.Neutral
+            score2 = slice[j].Probability.Neutral
         } else {
-            score2 := slice[j].Probability.Neg - 100
+            score2 = slice[j].Probability.Neg - 100
         }
         return score1 > score2
 
