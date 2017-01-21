@@ -38,12 +38,32 @@ func (slice Sentiments) Swap(i, j int) {
 }
 
 func (slice Sentiments) Less(i, j int) bool {
-	return slice[i].Probability.Pos*60+
+	/**return slice[i].Probability.Pos*60+
 		slice[i].Probability.Neg*30+
 		slice[i].Probability.Neutral*10 >
 		slice[j].Probability.Pos*60+
 			slice[j].Probability.Neg*30+
-			slice[j].Probability.Neutral*10
+			slice[j].Probability.Neutral*10**/
+        var score1 int
+        var score2 int
+        if slice[i].Probability.Pos > slice[i].Probability.Neutral &&
+            slice[i].Probability.Pos > slice[i].Probability.Neg {
+                score1 := 100 + slice[i].Probability.Pos
+        } else if slice[i].Probability.Neutral > slice[i].Probability.Neg {
+            score1 := slice[i].Probability.Neutral
+        } else {
+            score1 := slice[i].Probability.Neg - 100
+        }
+        if slice[j].Probability.Pos > slice[j].Probability.Neutral &&
+            slice[j].Probability.Pos > slice[j].Probability.Neg {
+                score2 := 100 + slice[j].Probability.Pos
+        } else if slice[j].Probability.Neutral > slice[j].Probability.Neg {
+            score2 := slice[j].Probability.Neutral
+        } else {
+            score2 := slice[j].Probability.Neg - 100
+        }
+        return score1 > score2
+
 }
 
 func (c *MainController) Get() {
