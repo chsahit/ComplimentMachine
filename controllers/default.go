@@ -1,9 +1,13 @@
 package controllers
 
 import (
+	"encoding/json"
 	"fmt"
 
+	"sort"
+
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/httplib"
 	clarifai "github.com/clarifai/clarifai-go"
 )
 
@@ -11,9 +15,55 @@ type MainController struct {
 	beego.Controller
 }
 
-type Response2 struct {
-	Page   int      `json:"page"`
-	Fruits []string `json:"fruits"`
+type Sentiment struct {
+	trait       string
+	Probability Prob   `json:"probability"`
+	Label       string `json:"label"`
+}
+
+type Prob struct {
+	Neg     float64 `json:"neg"`
+	Neutral float64 `json:"neutral"`
+	Pos     float64 `json:"pos"`
+}
+
+type Sentiments []Sentiment
+
+func (slice Sentiments) Len() int {
+	return len(slice)
+}
+
+func (slice Sentiments) Swap(i, j int) {
+	slice[i], slice[j] = slice[j], slice[i]
+}
+
+func (slice Sentiments) Less(i, j int) bool {
+	/**return slice[i].Probability.Pos*60+
+		slice[i].Probability.Neg*30+
+		slice[i].Probability.Neutral*10 >
+		slice[j].Probability.Pos*60+
+			slice[j].Probability.Neg*30+
+			slice[j].Probability.Neutral*10**/
+        var score1 float64
+        var score2 float64
+        if slice[i].Probability.Pos > slice[i].Probability.Neutral &&
+            slice[i].Probability.Pos > slice[i].Probability.Neg {
+                score1 = 100 + slice[i].Probability.Pos
+        } else if slice[i].Probability.Neutral > slice[i].Probability.Neg {
+            score1 = slice[i].Probability.Neutral
+        } else {
+            score1 = slice[i].Probability.Neg - 100
+        }
+        if slice[j].Probability.Pos > slice[j].Probability.Neutral &&
+            slice[j].Probability.Pos > slice[j].Probability.Neg {
+                score2 = 100 + slice[j].Probability.Pos
+        } else if slice[j].Probability.Neutral > slice[j].Probability.Neg {
+            score2 = slice[j].Probability.Neutral
+        } else {
+            score2 = slice[j].Probability.Neg - 100
+        }
+        return score1 > score2
+
 }
 
 func (c *MainController) Get() {
@@ -26,14 +76,21 @@ func (c *MainController) Get() {
 
 	if err != nil {
 		fmt.Println(err)
-	} else {
-		fmt.Println(tag_data.Results[0].Result.Tag.Classes[0])
 	}
 
-	tags := tag_data.Results[0].Result.Tag.Classes
+	var tags Sentiments
+	for i := 0; i < len(tag_data.Results[0].Result.Tag.Classes); i++ {
+		req := httplib.Post("http://text-processing.com/api/sentiment/")
+		req.Param("text", tag_data.Results[0].Result.Tag.Classes[i])
+		res := Sentiment{}
+		str, _ := req.String()
+		json.Unmarshal([]byte(str), &res)
+		res.trait = tag_data.Results[0].Result.Tag.Classes[i]
+		tags = append(tags, res)
+	}
+	sort.Sort(tags)
 
 	for i := 0; i < len(tags); i++ {
-		c.Ctx.ResponseWriter.Write([]byte(tag_data.Results[0].Result.Tag.Classes[i] + "\n"))
-
+		c.Ctx.WriteString(tags[i].trait + "\n")
 	}
 }
