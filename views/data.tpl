@@ -23,7 +23,7 @@
     <div class="w3-padding-64">
     </div>
   </div>
-  <div class="w3-half w3-red w3-container" style="height:94px">
+  <div class=" w3-red w3-container" style="height:94px">
     <div class="w3-padding-64 w3-center">
 
       <div class=" w3-padding-xxlarge" >
