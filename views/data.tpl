@@ -14,10 +14,10 @@
     <div class=" w3-center style" style = "height:300px ">
       <h1 class = "w3-center">What are your best qualities?</h1>
     </div>
-    <div class = "w3-row w3-margin w3-hide-small">
+    <div class = "w3-row w3-margin ">
         <img src="{{.image}}">
     </div>
-    <div class = "w3-row w3-margin w3-hide-large w3-hide-medium" style="height: 25% width: 25%">
+    <div class = "w3-row w3-margin " style="height: 25% width: 25%">
         <img src="{{.image}}">
     </div>
     <div class="w3-padding-64">
