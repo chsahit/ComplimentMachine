@@ -39,9 +39,19 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
        <input type="file" id="my_img" style="display: none;"/>
     </form>
    <script>
-        function upload() {
-            var image = document.getElementById("my_img").click();
-        };
+       <input id="myFileInput" type="file" accept="image/*;capture=camera">
+
+var myInput = document.getElementById('myFileInput');
+
+function sendPic() {
+    var file = myInput.files[0];
+
+    // Send file here either by adding it to a `FormData` object
+    // and sending that via XHR, or by simply passing the file into
+    // the `send` method of an XHR instance.
+}
+
+myInput.addEventListener('change', sendPic, false);
     </script>
 
 

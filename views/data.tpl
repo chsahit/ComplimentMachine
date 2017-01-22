@@ -8,11 +8,16 @@
 
 <!-- First Grid: Logo & About -->
 <div class="w3-row">
-  <div class="w3-half w3-red w3-container w3-center" style="height:94px " >
+  <div class="w3-half w3-red w3-hide-small w3-container w3-center" style="height:94px " >
+  <div class="w3-half w3-red w3-hide-large w3-hide-medium w3-container w3-center" style="height:114px " >
+
     <div class=" w3-center style" style = "height:300px ">
       <h1 class = "w3-center">What are your best qualities?</h1>
     </div>
-    <div class = "w3-row w3-margin">
+    <div class = "w3-row w3-margin w3-hide-small">
+        <img src="{{.image}}">
+    </div>
+    <div class = "w3-row w3-margin w3-hide-large w3-hide-medium" style="height: 25% width: 25%">
         <img src="{{.image}}">
     </div>
     <div class="w3-padding-64">
