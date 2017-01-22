@@ -38,7 +38,7 @@
         </div>
       </div>
     <h style="color:black;"> These are some trending words of people around you! </h>
-    <div class='w3-panel w3-blue w3-round-xlarge w3-padding-16' >
+    <!--<div class='w3-panel w3-blue w3-round-xlarge w3-padding-16' >
         <p style='color: white;'> {{ (index .shared_tags 0).Trait }} </p>
     </div>
     <div class='w3-panel w3-blue w3-round-xlarge w3-padding-16' >
@@ -46,7 +46,7 @@
     </div>
     <div class='w3-panel w3-blue w3-round-xlarge w3-padding-16' >
         <p style='color: white;'> {{ (index .shared_tags 2).Trait }} </p>
-    </div>
+    </div>-->
   </div>
 
     </div>
