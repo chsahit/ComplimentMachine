@@ -44,13 +44,14 @@ Dropzone.options.myAwesomeDropzone = {
 
 <!-- Header -->
 <header class="w3-container w3-red w3-center  w3-padding-128">
-  <h1 class="w3-margin w3-jumbo">Compliment Machine</h1>
+  <h1 class="w3-margin  w3-hide-small w3-jumbo">Compliment Machine</h1>
+  <h1 class="w3-margin  w3-hide-large w3-hide-medium">Compliment Machine</h1>
 
   <!-- <button class="w3-btn w3-round-large w3-grey w3-padding-16 w3-large w3-margin-top" onclick="upload()">
        Upload A Photo</button>-->
     <button id="my-awesome-dropzone" class="dropzone w3-btn w3-round-large w3-grey w3-padding-16 w3-large w3-margin-top">
       Upload A Photo</button>
-    
+
 
 </header>
 
