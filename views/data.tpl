@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Compliment Machine</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
@@ -37,6 +37,17 @@
             <p style='color: white;'> {{ (index .tags 2).Trait }} </p>
         </div>
       </div>
+    <h style="color:black;"> These are some trending words of people around you! </h>
+    <!--<div class='w3-panel w3-blue w3-round-xlarge w3-padding-16' >
+        <p style='color: white;'> {{ (index .shared_tags 0).Trait }} </p>
+    </div>
+    <div class='w3-panel w3-blue w3-round-xlarge w3-padding-16' >
+        <p style='color: white;'> {{ (index .shared_tags 1).Trait }} </p>
+    </div>
+    <div class='w3-panel w3-blue w3-round-xlarge w3-padding-16' >
+        <p style='color: white;'> {{ (index .shared_tags 2).Trait }} </p>
+    </div>-->
+  </div>
 
     </div>
   </div>
