@@ -17,9 +17,7 @@
     <div class = "w3-row w3-margin ">
         <img src="{{.image}}">
     </div>
-    <div class = "w3-row w3-margin " style="height: 25% width: 25%">
-        <img src="{{.image}}">
-    </div>
+
     <div class="w3-padding-64">
     </div>
   </div>
