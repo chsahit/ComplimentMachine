@@ -34,6 +34,9 @@ func (slice Sentiments) Less(i, j int) bool {
 	} else {
 		score1 = slice[i].Probability.Neg - 100
 	}
+        if slice[i].Trait == "adult" || slice[i].Trait == "portrait" {
+            score1 = -100;
+        }
 	if slice[j].Probability.Pos > slice[j].Probability.Neutral &&
 		slice[j].Probability.Pos > slice[j].Probability.Neg {
 		score2 = 100 + slice[j].Probability.Pos
@@ -42,6 +45,9 @@ func (slice Sentiments) Less(i, j int) bool {
 	} else {
 		score2 = slice[j].Probability.Neg - 100
 	}
+        if slice[j].Trait == "adult" || slice[j].Trait == "portrait" {
+            score2 = -100;
+        }
 	return score1 > score2
 
 }

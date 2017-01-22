@@ -12,6 +12,7 @@ import (
 	clarifai "github.com/clarifai/clarifai-go"
 )
 
+var Redisptr *Client 
 type MainController struct {
 	beego.Controller
 }
@@ -77,4 +78,12 @@ func (c *DataController) Get() {
 
 	c.Data["tags"] = tags
 	c.Data["image"] = c.GetString("image")
+        Redisptr.Set(tags[0], 0, 0)
+        for i:= 0; i < 3; i++ {
+            if Redisptr.Get(tags[i]) == nil {
+                Redisptr.Set(tags[i], 0, 0);
+            } else {
+                Redisptr.Set(tags[i], Redisptr.Get(tags[i]) + 1, 0);
+            }
+        }
 }
